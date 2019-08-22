@@ -136,39 +136,7 @@ function SmartThingsAccessory(platform, device) {
                 else if (value == Characteristic.SwingMode.SWING_DISABLED)
                     that.platform.api.runCommand(callback, that.deviceid, "offSwing");
             });
-            that.platform.addAttributeUsage("setangle", this.deviceid, thisCharacteristic);
-            /*
-                thisCharacteristic = this.getaddService(Service.Fanv2).getCharacteristic(Characteristic.TargetFanState)
-                thisCharacteristic.on('get', function (callback) {
-                    if (that.device.attributes.fanmode == 'natural')
-                        callback(null, Characteristic.TargetFanState.AUTO);
-                    else if (that.device.attributes.fanmode == 'general')
-                        callback(null, Characteristic.TargetFanState.MANUAL);
-                });
-                thisCharacteristic.on('set', function (value, callback) {
-                    if (value == Characteristic.TargetFanState.MANUAL) {
-                        that.platform.api.runCommand(callback, that.deviceid, "generalOn");
-                    } else if (value == Characteristic.TargetFanState.AUTO) {
-                        that.platform.api.runCommand(callback, that.deviceid, "naturalOn");
-                    }
-                });
-                that.platform.addAttributeUsage("fanmode", this.deviceid, thisCharacteristic);
-            */
-            thisCharacteristic = this.getaddService(Service.Fanv2).getCharacteristic(Characteristic.RotationDirection)
-            thisCharacteristic.on('get', function (callback) {
-                if (that.device.attributes.fanmode == 'natural')
-                    callback(null, Characteristic.RotationDirection.COUNTER_CLOCKWISE);
-                else if (that.device.attributes.fanmode == 'general')
-                    callback(null, Characteristic.RotationDirection.CLOCKWISE);
-            });
-            thisCharacteristic.on('set', function (value, callback) {
-                if (value == Characteristic.RotationDirection.CLOCKWISE) {
-                    that.platform.api.runCommand(callback, that.deviceid, "generalOn");
-                } else if (value == Characteristic.RotationDirection.COUNTER_CLOCKWISE) {
-                    that.platform.api.runCommand(callback, that.deviceid, "naturalOn");
-                }
-            });
-            that.platform.addAttributeUsage("fanmode", this.deviceid, thisCharacteristic);
+            that.platform.addAttributeUsage("swing", this.deviceid, thisCharacteristic);
 
         }
         

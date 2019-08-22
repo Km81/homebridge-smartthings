@@ -125,16 +125,16 @@ function SmartThingsAccessory(platform, device) {
 
             thisCharacteristic = this.getaddService(Service.Fanv2).getCharacteristic(Characteristic.SwingMode)
             thisCharacteristic.on('get', function (callback) {
-                if (that.device.attributes.setangle == "off")
+                if (that.device.attributes.swing == "off")
                     callback(null, Characteristic.SwingMode.SWING_DISABLED);
                 else
                     callback(null, Characteristic.SwingMode.SWING_ENABLED);
             });
             thisCharacteristic.on('set', function (value, callback) {
                 if (value == Characteristic.SwingMode.SWING_ENABLED)
-                    that.platform.api.runCommand(callback, that.deviceid, "setAngleOn");
+                    that.platform.api.runCommand(callback, that.deviceid, "onSwing");
                 else if (value == Characteristic.SwingMode.SWING_DISABLED)
-                    that.platform.api.runCommand(callback, that.deviceid, "setAngleOff");
+                    that.platform.api.runCommand(callback, that.deviceid, "offSwing");
             });
             that.platform.addAttributeUsage("setangle", this.deviceid, thisCharacteristic);
             /*
